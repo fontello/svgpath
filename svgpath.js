@@ -83,11 +83,14 @@ SvgPath.prototype.parsePath = function(pathString) {
 //
 SvgPath.prototype.toString = function() {
   return [].concat.apply([], this.segments).join(' ')
-    // Optimizations
+    // Optimizations: remove spaces around commands & before `-`
+    //
+    // We could also remove leading zeros for `0.5`-like values,
+    // but their count is too small to spend time for.
     .replace(/ ?([achlmqrstvxz]) ?/gi, '$1')
-    // workaround for Fontforge importing bug
-    .replace(/zm/g, 'z m')
-    .replace(/ \-/g, '-');
+    .replace(/ \-/g, '-')
+    // workaround for FontForge SVG importing bug
+    .replace(/zm/g, 'z m');
 };
 
 
