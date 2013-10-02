@@ -1,7 +1,7 @@
 {
   "name"            : "svgpath",
 
-  "version"         : "1.0.0",
+  "version"         : "1.0.1",
 
   "description"     : "SVG path low level operations toolkit",
   "keywords"        : ["svg"],
