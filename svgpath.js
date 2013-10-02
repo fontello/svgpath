@@ -25,7 +25,7 @@ function SvgPath(pathString) {
 
 
 var pathCommands = /[MmZzLlHhVvCcSsQqTtAa][^MmZzLlHhVvCcSsQqTtAa]*/gm;
-var pathValues = /[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/ig;
+var pathValues = /[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/g;
 
 
 // Parser code is shamelessly borrowed from Raphael
