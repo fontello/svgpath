@@ -25,8 +25,9 @@ var transformedPath = new SvgPath(__your_path__)
   .scale(0.5)
   .translate(100,200)
   .abs()
-  .toFixed(1)
+  .toFixed(1) // Here the real rounding happens
   .rel()
+  .toFixed(1) // Fix js floating point error/garbage after rel()
   .toString()
 ```
 
@@ -70,8 +71,12 @@ Returns final path string.
 Round all coordinated to given decimal precision. By default round to integer.
 Useful to reduce resulting string size.
 
-(!) NOTE. You should apply `abs()` first, because relative coordinate summarize
-precision errors.
+(!) NOTE:
+
+1. You should apply `abs()` first, because relative coordinate summarize
+   precision errors.
+2. After .rel() call, your rounded values can be garbadet with tail like
+   `0.000000000000023`. So, you have to call .round(x) again. See example above.
 
 ### .iterate(function) -> self
 
