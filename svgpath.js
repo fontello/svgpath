@@ -182,10 +182,10 @@ SvgPath.prototype.round = function(d) {
     // [cmd, rx, ry, x-axis-rotation, large-arc-flag, sweep-flag, x, y]
     // don't touch flags and rotation
     if (segment[0].toLowerCase() === 'a') {
-      segment[1] = segment[1].toFixed(d);
-      segment[2] = segment[2].toFixed(d);
-      segment[6] = segment[6].toFixed(d);
-      segment[7] = segment[7].toFixed(d);
+      segment[1] = +segment[1].toFixed(d);
+      segment[2] = +segment[2].toFixed(d);
+      segment[6] = +segment[6].toFixed(d);
+      segment[7] = +segment[7].toFixed(d);
       return;
     }
 
