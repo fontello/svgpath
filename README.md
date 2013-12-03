@@ -75,7 +75,7 @@ Useful to reduce resulting string size.
 
 1. You should apply `abs()` first, because relative coordinate summarize
    precision errors.
-2. After .rel() call, your rounded values can be garbadet with tail like
+2. After .rel() call, your rounded values can be littered with tail like
    `0.000000000000023`. So, you have to call .round(x) again. See example above.
 
 ### .iterate(function) -> self
