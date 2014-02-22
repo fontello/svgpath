@@ -25,4 +25,13 @@ describe('Parse', function () {
     assert.equal('', new SvgPath('').toString());
   });
 
+
+  it('params formats', function () {
+    assert.equal('M0 0', new SvgPath('M 0.0 0.0').toString());
+    assert.equal('M100 0', new SvgPath('M 1e+2 0').toString());
+    assert.equal('M100 0', new SvgPath('M +1e+2 0').toString());
+    assert.equal('M0.01 0', new SvgPath('M 1e-2 0').toString());
+    assert.equal('M0.001 0', new SvgPath('M 0.1e-2 0').toString());
+    assert.equal('M0.001 0', new SvgPath('M .1e-2 0').toString());
+  });
 });
