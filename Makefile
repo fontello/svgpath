@@ -26,7 +26,15 @@ lint:
 		fi
 	jshint . --show-non-errors
 
+
 test: lint
+	@if test ! `which mocha` ; then \
+		echo "You need 'mocha' installed in order to run tests." >&2 ; \
+		echo "  $ make dev-deps" >&2 ; \
+		exit 128 ; \
+		fi
+	mocha
+
 
 dev-deps:
 	@if test ! `which npm` ; then \

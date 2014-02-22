@@ -19,6 +19,11 @@
                         "url": "git://github.com/fontello/svgpath.git"
                       },
 
-  "main"            : "./svgpath.js"
+  "main"            : "./svgpath.js",
+  "devDependencies" : {
+                        "mocha":     "*",
+                        "benchmark": "*",
+                        "ansi":      "*"
+                      }
 }
 
