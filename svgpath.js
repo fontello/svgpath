@@ -25,7 +25,7 @@ function SvgPath(pathString) {
 
 
 var pathCommands = /[MmZzLlHhVvCcSsQqTtAa][^MmZzLlHhVvCcSsQqTtAa]*/gm;
-var pathValues = /[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/g;
+var pathValues = /[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?/g;
 
 
 // Parser code is shamelessly borrowed from Raphael
@@ -46,6 +46,7 @@ SvgPath.prototype.parsePath = function(pathString) {
 
     paramsStr.replace(pathValues, function(paramStr) {
       params.push(+paramStr);
+      return '';
     });
 
     if (cmdLowerCase === "m" && params.length > 2) {
@@ -65,6 +66,8 @@ SvgPath.prototype.parsePath = function(pathString) {
         }
       }
     }
+
+    return '';
   });
 
   // First command MUST be always M or m.
