@@ -16,14 +16,13 @@ describe('Parse', function () {
 
     for (var i=0; i<batch.length; i++) {
       if (!batch[i]) { continue; }
-      assert(batch[i], new SvgPath(batch[i]).toString());
+      assert.equal(batch[i], new SvgPath(batch[i]).toString());
     }
   });
 
 
-  it.skip('empty string', function () {
-    console.log(new SvgPath('').segments);
-    assert('', new SvgPath('').toString());
+  it('empty string', function () {
+    assert.equal('', new SvgPath('').toString());
   });
 
 });

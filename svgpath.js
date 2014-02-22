@@ -82,7 +82,18 @@ SvgPath.prototype.parsePath = function(pathString) {
 // Convert processed SVG Path back to string
 //
 SvgPath.prototype.toString = function() {
-  return [].concat.apply([], this.segments).join(' ')
+  var elements = [];
+
+  for (var s=0; s<this.segments.length; s++) {
+    // remove repeating commands names
+    if (s>0 && (this.segments[s][0] === this.segments[s-1][0])) {
+      elements.push(this.segments[s].slice(1));
+      continue;
+    }
+    elements.push(this.segments[s]);
+  }
+
+  return [].concat.apply([], elements).join(' ')
     // Optimizations: remove spaces around commands & before `-`
     //
     // We could also remove leading zeros for `0.5`-like values,
