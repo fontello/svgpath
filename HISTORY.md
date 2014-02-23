@@ -1,3 +1,11 @@
+1.0.3 / 2014-02-23
+------------------
+
+- Parser rewrite (2x speed gain)
+- toString(): skip command name on repeaded sequences
+- Added tests & benchmarks
+
+
 1.0.2 / 2013-12-03
 ------------------
 
