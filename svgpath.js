@@ -13,73 +13,24 @@
 'use strict';
 
 
+var parse = require('./parse');
+
+
 // Class constructor
 //
-function SvgPath(pathString) {
-  if (!(this instanceof SvgPath)) { return new SvgPath(pathString); }
+function SvgPath(path) {
+  if (!(this instanceof SvgPath)) { return new SvgPath(path); }
 
   // Array of path segments.
   // Each segment is array [command, param1, param2, ...]
-  this.segments = this.parsePath(pathString);
+  try {
+    this.segments = parse(path);
+  } catch (e) {
+    this.segments = [];
+  }
 }
 
 
-var pathCommands = /[MmZzLlHhVvCcSsQqTtAa][^MmZzLlHhVvCcSsQqTtAa]*/gm;
-var pathValues = /[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?/g;
-
-
-// Parser code is shamelessly borrowed from Raphael
-// https://github.com/DmitryBaranovskiy/raphael/
-//
-SvgPath.prototype.parsePath = function(pathString) {
-
-  if (!pathString) { return []; }
-
-  var data = [];
-  var paramCounts = { a: 7, c: 6, h: 1, l: 2, m: 2, r: 4, q: 4, s: 4, t: 2, v: 1, z: 0 };
-
-  pathString.replace(pathCommands, function(segmentString) {
-    var cmd = segmentString[0]; // first character of segment is a command name
-    var paramsStr = segmentString.substr(1); // get command parameters - all except command name
-    var cmdLowerCase = cmd.toLowerCase();
-    var params = [];
-
-    paramsStr.replace(pathValues, function(paramStr) {
-      params.push(+paramStr);
-      return '';
-    });
-
-    if (cmdLowerCase === "m" && params.length > 2) {
-      data.push([cmd].concat(params.splice(0, 2)));
-      cmdLowerCase = "l";
-      cmd = (cmd === "m") ? "l" : "L";
-    }
-
-    if (cmdLowerCase === "r") {
-      data.push([cmd].concat(params));
-    } else {
-
-      while (params.length >= paramCounts[cmdLowerCase]) {
-        data.push([cmd].concat(params.splice(0, paramCounts[cmdLowerCase])));
-        if (!paramCounts[cmdLowerCase]) {
-          break;
-        }
-      }
-    }
-
-    return '';
-  });
-
-  // First command MUST be always M or m.
-  // Make it always M, to avoid unnecesary checks in translate/abs
-  if (data[0][0].toLowerCase() !== 'm') {
-    data = [];
-  } else {
-    data[0][0] = 'M';
-  }
-
-  return data;
-};
 
 
 // Convert processed SVG Path back to string
