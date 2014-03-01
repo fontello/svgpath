@@ -14,7 +14,11 @@
 
 
 var parse = require('./parse');
+var Matrix = require('./matrix');
 
+// Regular expressions for transform string parsing
+var reTransformCommandSplit = /\s*(matrix|translate|scale|rotate|skewX|skewY)\s*\(\s*(.+?)\s*\)[\s,]*/;
+var reTransformDataSplit = /[\s,]+/;
 
 // Class constructor
 //
@@ -341,5 +345,82 @@ SvgPath.prototype.unshort = function() {
   return this;
 };
 
+// Transform path
+//
+SvgPath.prototype.transform = function(transformString) {
+  if (!transformString) {
+    return this;
+  }
+
+  var matrix = new Matrix();
+  var current;
+  var commandsParamsCount = {
+    matrix: [6],
+    scale: [1, 2],
+    rotate: [1, 3],
+    translate: [1, 2],
+    skewX: [1],
+    skewY: [1],
+  };
+
+  // Split value into ['', 'translate', '10 50', '', 'scale', '2', '', 'rotate',  '-45', '']
+  transformString.split(reTransformCommandSplit).forEach(function(item) {
+
+    if (item) {
+      // if item is a translate function
+      if (commandsParamsCount[item]) {
+
+        // then change current context
+        current = {
+          name : item
+        };
+
+        // else if item is data
+      } else {
+
+        // then split it into [10, 50] and collect as context.data
+        current.data = item.split(reTransformDataSplit).map(function(i) {
+          return +i;
+        });
+
+        // If count of data is not correct then remove current context
+        if (commandsParamsCount[ current.name ].indexOf( current.data.length) !== -1){
+          matrix[ current.name ]( current.data );
+        }
+      }
+    }
+  });
+
+  this.iterate(function(segment, index, x, y) {
+    var name = segment[0].toLowerCase();
+    var isRelative = (segment[0] === name);
+
+    if (name === 'h' || name === 'v') {
+      // add a second coordinate to the element
+      segment =
+        (name === 'h') ?
+        [ 'L', isRelative ? segment[1] + x : segment[1], y ] :
+        [ 'L', x, isRelative ? segment[1] + y : segment[1] ];
+
+      // now we are have absolute coordinates
+      isRelative = false;
+    }
+
+    // TODO: add A element to transformations. May be convert to curve?
+
+    var result = [segment[0]];
+
+    // Apply transformations to the segment
+    for (var i = 1; i < segment.length; i += 2) {
+      var newXY = matrix.calc(segment[i], segment[i + 1], isRelative);
+      result[i] = newXY[0];
+      result[i + 1] = newXY[1];
+    }
+
+    return [result];
+  });
+
+  return this;
+};
 
 module.exports = SvgPath;
