@@ -9,7 +9,7 @@ var fs      = require('fs');
 var SvgPath = require('../');
 
 
-describe('Parse', function () {
+describe('Path parse', function () {
 
   it('big batch', function () {
     var batch = fs.readFileSync(__dirname +'/fixtures/big.txt', 'utf8').split(/[\r\n]/);

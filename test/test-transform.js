@@ -44,7 +44,7 @@ describe('Transform', function () {
     });
   });
 
-  describe('Skew', function () {
+  describe('skew', function () {
     // SkewX matrix [ 1, 0, 4, 1, 0, 0 ],
     // x = x*1 + y*4 + 0 = x + y*4
     // y = x*0 + y*1 + 0 = y
@@ -85,20 +85,20 @@ describe('Transform', function () {
     });
   });
 
-  describe('several operations', function () {
-    it('scale translate', function () {
+  describe('multiple transforms', function () {
+    it('scale + translate', function () {
       assert.equal(
         'M100 100L120 130 140 130',
         new SvgPath('M0 0 L 10 10 20 10').transform('translate(100,100) scale(2,3)').toString()
       );
     });
-    it('scale rotate', function () {
+    it('scale + rotate', function () {
       assert.equal(
         'M0 0L-30 20-30 40',
         new SvgPath('M0 0 L 10 10 20 10').transform('rotate(90) scale(2,3)').round(0).toString()
       );
     });
-    it('rotate skewX', function () {
+    it('rotate + skewX', function () {
       assert.equal(
         'M0 0L140 30 160 30',
         new SvgPath('M0 0 L 10 10 20 10').transform('skewX(75.96) scale(2,3)').round(0).toString()

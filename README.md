@@ -1,6 +1,8 @@
 svgpath
 =======
 
+[![Build Status](https://travis-ci.org/fontello/svg2ttf.png?branch=master)](https://travis-ci.org/fontello/svg2ttf)
+
 Low level toolkit for svg paths transformations. Sometime you can't use
 `transform` attributes and have to apply changes to svg paths directly.
 Then this package is for you :) !
@@ -56,6 +58,11 @@ Rescale path (the same as SVG `scale` transformation).
 ### .translate(x [, y]) -> self
 
 Rescale path (the same as SVG `scale` transformation)
+
+### .transform(string) -> self
+
+Any SVG transform or their combination. For example `rotate(90) scale(2,3)`.
+The same format, as described in standard.
 
 ### .unshort() -> self
 
