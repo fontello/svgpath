@@ -26,6 +26,11 @@ describe('Path parse', function () {
   });
 
 
+  it('line terminators', function () {
+    assert.equal('M0 0l2-3z', new SvgPath('M0\r 0\nl2-3\nz').toString());
+  });
+
+
   it('params formats', function () {
     assert.equal('M0 0', new SvgPath('M 0.0 0.0').toString());
     assert.equal('M100 0', new SvgPath('M 1e+2 0').toString());
