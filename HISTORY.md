@@ -1,3 +1,9 @@
+1.0.6 / 2014-06-15
+------------------
+
+- Maintenance release - docs & build scripts update.
+
+
 1.0.5 / 2014-04-09
 ------------------
 

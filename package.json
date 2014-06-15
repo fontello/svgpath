@@ -1,7 +1,7 @@
 {
   "name"            : "svgpath",
 
-  "version"         : "1.0.5",
+  "version"         : "1.0.6",
 
   "description"     : "SVG path low level operations toolkit",
   "keywords"        : ["svg", "path", "transform", "scale", "translate"],
