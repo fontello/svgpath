@@ -4,15 +4,10 @@
   "version"         : "1.0.5",
 
   "description"     : "SVG path low level operations toolkit",
-  "keywords"        : ["svg"],
+  "keywords"        : ["svg", "path", "transform", "scale", "translate"],
   "homepage"        : "https://github.com/fontello/svgpath",
   "bugs"            : { "url": "https://github.com/fontello/svgpath/issues" },
-  "licenses"        : [
-                        {
-                          "type": "MIT",
-                          "url": "https://github.com/fontello/svgpath/raw/master/LICENSE"
-                        }
-                      ],
+  "license"         : { "type": "MIT", "url": "https://github.com/fontello/svgpath/raw/master/LICENSE" },
 
   "repository"      : {
                         "type": "git",

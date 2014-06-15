@@ -1,7 +1,8 @@
 svgpath
 =======
 
-[![Build Status](https://travis-ci.org/fontello/svg2ttf.png?branch=master)](https://travis-ci.org/fontello/svg2ttf)
+[![Build Status](https://travis-ci.org/fontello/svg2ttf.svg?branch=master)](https://travis-ci.org/fontello/svg2ttf)
+[![NPM version](https://img.shields.io/npm/v/svgpath.svg)](https://www.npmjs.org/package/svgpath)
 
 Low level toolkit for svg paths transformations. Sometime you can't use
 `transform` attributes and have to apply changes to svg paths directly.
@@ -27,9 +28,9 @@ var transformedPath = new SvgPath(__your_path__)
   .scale(0.5)
   .translate(100,200)
   .abs()
-  .toFixed(1) // Here the real rounding happens
+  .round(1) // Here the real rounding happens
   .rel()
-  .toFixed(1) // Fix js floating point error/garbage after rel()
+  .round(1) // Fix js floating point error/garbage after rel()
   .toString()
 ```
 
