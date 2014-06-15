@@ -17,6 +17,7 @@
   "main"            : "./lib/svgpath.js",
   "devDependencies" : {
                         "mocha":     "*",
+                        "jshint":    "*",
                         "benchmark": "*",
                         "ansi":      "*"
                       }

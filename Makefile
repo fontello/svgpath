@@ -15,35 +15,16 @@ GITHUB_PROJ := fontello/${NPM_PACKAGE}
 help:
 	echo "make help       - Print this help"
 	echo "make lint       - Lint sources with JSHint"
+	echo "make test       - Run tests"
 	echo "make publish    - Set new version tag and publish npm package"
 
 
 lint:
-	if test ! `which jshint` ; then \
-		echo "You need 'jshint' installed in order to run lint." >&2 ; \
-		echo "  $ make dev-deps" >&2 ; \
-		exit 128 ; \
-		fi
 	jshint . --show-non-errors
 
 
 test: lint
-	@if test ! `which mocha` ; then \
-		echo "You need 'mocha' installed in order to run tests." >&2 ; \
-		echo "  $ make dev-deps" >&2 ; \
-		exit 128 ; \
-		fi
 	mocha
-
-
-dev-deps:
-	@if test ! `which npm` ; then \
-		echo "You need 'npm' installed." >&2 ; \
-		echo "  See: http://npmjs.org/" >&2 ; \
-		exit 128 ; \
-		fi
-	npm install -g jshint
-	npm install
 
 
 publish:
@@ -63,5 +44,5 @@ publish:
 	npm publish https://github.com/${GITHUB_PROJ}/tarball/${NPM_VERSION}
 
 
-.PHONY: publish lint
-.SILENT: help lint
+.PHONY: publish lint test
+.SILENT: help lint test
