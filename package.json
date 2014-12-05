@@ -1,6 +1,6 @@
 {
   "name": "svgpath",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "SVG path operations library",
   "keywords": [
     "svg",
