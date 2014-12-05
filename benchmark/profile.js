@@ -1,9 +1,10 @@
 'use strict';
 
 var fs      = require('fs');
+var path    = require('path');
 var SvgPath = require('../');
 
-var data = fs.readFileSync(__dirname +'/samples/big.txt', 'utf8').split(/[\r\n]/);
+var data = fs.readFileSync(path.join(__dirname, '/samples/big.txt'), 'utf8').split(/[\r\n]/);
 
 
 var p = [];

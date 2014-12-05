@@ -20,7 +20,7 @@ help:
 
 
 lint:
-	jshint . --show-non-errors
+	eslint --reset ./
 
 
 test: lint
