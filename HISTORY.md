@@ -1,3 +1,10 @@
+1.0.7 / WIP
+------------------
+
+- Parser rewrite (1.5x speedup)
+- Exposed `.err` property with text of error (empty on success)
+
+
 1.0.6 / 2014-06-15
 ------------------
 
