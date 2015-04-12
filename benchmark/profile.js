@@ -9,6 +9,6 @@ var data = fs.readFileSync(path.join(__dirname, '/samples/big.txt'), 'utf8').spl
 
 var p = [];
 
-data.forEach(function(path) {
+data.forEach(function (path) {
   p.push(new SvgPath(path));
 });
