@@ -26,10 +26,11 @@
     "test": "make test"
   },
   "devDependencies": {
+    "ansi": "*",
+    "benchmark": "*",
     "eslint": "0.10.0",
     "eslint-plugin-nodeca": "~1.0.3",
-    "mocha": "*",
-    "benchmark": "*",
-    "ansi": "*"
+    "istanbul": "*",
+    "mocha": "*"
   }
 }

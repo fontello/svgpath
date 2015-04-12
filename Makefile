@@ -27,6 +27,11 @@ test: lint
 	mocha
 
 
+coverage:
+	rm -rf coverage
+	istanbul cover node_modules/.bin/_mocha
+
+
 publish:
 	@if test 0 -ne `git status --porcelain | wc -l` ; then \
 		echo "Unclean working tree. Commit or stash changes first." >&2 ; \
@@ -44,5 +49,5 @@ publish:
 	npm publish https://github.com/${GITHUB_PROJ}/tarball/${NPM_VERSION}
 
 
-.PHONY: publish lint test
+.PHONY: publish lint test coverage
 .SILENT: help lint test

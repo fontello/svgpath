@@ -1,2 +1,3 @@
-node_modules/
-v8.log
+node_modules
+coverage
+*.log
