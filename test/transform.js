@@ -169,8 +169,8 @@ describe('Transform', function () {
 
     it('segment replacement [H,V] => L', function () {
       assert.equal(
-        svgpath('M0 0 H 10 V 10 Z M 100 100 h 15 v -10').transform('translate(100,100)').toString(),
-        'M100 100L110 100 110 110ZM200 200L215 200 215 190'
+        svgpath('M0 0 H 10 V 10 Z M 100 100 h 15 v -10').transform('rotate(45)').round(0).toString(),
+        'M0 0L7 7 0 14ZM0 141l11 11 7-7'
       );
     });
 
