@@ -1,8 +1,18 @@
+1.1.0 / WIP
+------------------
+
+- Unified transformations logic.
+- Added `.matrix` and `.rodate()` methods.
+- Evaluate curried transforms lazily.
+- Coverage improvement.
+- Minor optimisation & code refactoring.
+
+
 1.0.7 / 2014-12-05
 ------------------
 
-- Parser rewrite (1.5x speedup)
-- Exposed `.err` property with text of error (empty on success)
+- Parser rewrite (1.5x speedup).
+- Exposed `.err` property with text of error (empty on success).
 
 
 1.0.6 / 2014-06-15
