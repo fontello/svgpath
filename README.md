@@ -1,8 +1,10 @@
 svgpath
 =======
 
-[![Build Status](https://travis-ci.org/fontello/svg2ttf.svg?branch=master)](https://travis-ci.org/fontello/svg2ttf)
-[![NPM version](https://img.shields.io/npm/v/svgpath.svg)](https://www.npmjs.org/package/svgpath)
+[![Build Status](https://img.shields.io/travis/fontello/svgpath/master.svg?style=flat)](https://travis-ci.org/fontello/svgpath)
+[![NPM version](https://img.shields.io/npm/v/svgpath.svg?style=flat)](https://www.npmjs.org/package/svgpath)
+[![Coverage Status](https://img.shields.io/coveralls/fontello/svgpath/master.svg?style=flat)](https://coveralls.io/r/fontello/svgpath?branch=master)
+
 
 Low level toolkit for svg paths transformations. Sometime you can't use
 `transform` attributes and have to apply changes to svg paths directly.
