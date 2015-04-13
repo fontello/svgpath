@@ -244,6 +244,37 @@ describe('API', function () {
         'M20 25c21 23 22.5 27.5 45 55'
       );
     });
+
+    it('no change', function () {
+      assert.equal(
+        svgpath('M5 5 C20 30 10 15 30 15').matrix([ 1, 0, 0, 1, 0, 0 ]).toString(),
+        'M5 5C20 30 10 15 30 15'
+      );
+    });
+  });
+
+
+  describe('combinations', function () {
+    it('scale + translate', function () {
+      assert.equal(
+        svgpath('M0 0 L 10 10 20 10').scale(2, 3).translate(100, 100).toString(),
+        'M100 100L120 130 140 130'
+      );
+    });
+
+    it('scale + rotate', function () {
+      assert.equal(
+        svgpath('M0 0 L 10 10 20 10').scale(2, 3).rotate(90).round(0).toString(),
+        'M0 0L-30 20-30 40'
+      );
+    });
+
+    it('empty', function () {
+      assert.equal(
+        svgpath('M0 0 L 10 10 20 10').translate(0).scale(1).rotate(0, 10, 10).round(0).toString(),
+        'M0 0L10 10 20 10'
+      );
+    });
   });
 
 
