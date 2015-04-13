@@ -173,5 +173,13 @@ describe('Transform', function () {
         'M100 100L110 100 110 110ZM200 200L215 200 215 190'
       );
     });
+
+    it('nothing to transform', function () {
+      // coverage
+      assert.equal(
+        svgpath('M10 10 L15 15').transform('   ').toString(),
+        'M10 10L15 15'
+      );
+    });
   });
 });
