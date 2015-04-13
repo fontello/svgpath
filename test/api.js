@@ -8,6 +8,7 @@ var svgpath = require('../');
 
 
 describe('API', function () {
+
   describe('unshort - cubic', function () {
     it("shouldn't change full arc", function () {
       assert.equal(
@@ -38,6 +39,7 @@ describe('API', function () {
     });
   });
 
+
   describe('unshort - quadratic', function () {
     it("shouldn't change full arc", function () {
       assert.equal(
@@ -67,6 +69,7 @@ describe('API', function () {
       );
     });
   });
+
 
   describe('abs', function () {
     it('should convert line', function () {
@@ -112,6 +115,7 @@ describe('API', function () {
     });
   });
 
+
   describe('rel', function () {
     it('should convert line', function () {
       assert.equal(
@@ -155,6 +159,7 @@ describe('API', function () {
       );
     });
   });
+
 
   describe('scale', function () {
     it('should scale abs curve', function () {
@@ -205,6 +210,43 @@ describe('API', function () {
     });
   });
 
+
+  describe('rotate', function () {
+    it('rotate by 90 degrees about point(10, 10)', function () {
+      assert.equal(
+        svgpath('M10 10L15 10').rotate(90, 10, 10).round(0).toString(),
+        'M10 10L10 15'
+      );
+    });
+
+    it('rotate by -90 degrees about point (0,0)', function () {
+      assert.equal(
+        svgpath('M0 10L0 20').rotate(-90).round(0).toString(),
+        'M10 0L20 0'
+      );
+    });
+  });
+
+
+  describe('matrix', function () {
+    // x = x*1.5 + y/2 + ( absolute ? 10 : 0)
+    // y = x/2 + y*1.5 + ( absolute ? 15 : 0)
+    it('path with absolute segments', function () {
+      assert.equal(
+        svgpath('M5 5 C20 30 10 15 30 15').matrix([ 1.5, 0.5, 0.5, 1.5, 10, 15 ]).toString(),
+        'M20 25C55 70 32.5 42.5 62.5 52.5'
+      );
+    });
+
+    it('path with relative segments', function () {
+      assert.equal(
+        svgpath('M5 5 c10 12 10 15 20 30').matrix([ 1.5, 0.5, 0.5, 1.5, 10, 15 ]).toString(),
+        'M20 25c21 23 22.5 27.5 45 55'
+      );
+    });
+  });
+
+
   describe('translate', function () {
     it('should translate abs curve', function () {
       assert.equal(
@@ -253,6 +295,7 @@ describe('API', function () {
       );
     });
   });
+
 
   describe('round', function () {
     it('should round arcs', function () {
