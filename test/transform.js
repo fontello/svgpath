@@ -143,7 +143,10 @@ describe('Transform', function () {
         'M0 0L140 30 160 30'
       );
     });
+  });
 
+
+  describe('misc', function () {
     it('empty transforms', function () {
       assert.equal(
         svgpath('M0 0 L 10 10 20 10')
@@ -153,10 +156,17 @@ describe('Transform', function () {
         'M0 0L10 10 20 10'
       );
     });
-  });
 
+    it('wrong params count in transforms', function () {
+      assert.equal(
+        svgpath('M0 0 L 10 10 20 10')
+          .transform('rotate(10,0) scale(10,10,1) translate(10,10,0) skewX(10,0) skewY(10,0) matrix(0)')
+          .round(0)
+          .toString(),
+        'M0 0L10 10 20 10'
+      );
+    });
 
-  describe('misc', function () {
     it('segment replacement [H,V] => L', function () {
       assert.equal(
         svgpath('M0 0 H 10 V 10 Z M 100 100 h 15 v -10').transform('translate(100,100)').toString(),
