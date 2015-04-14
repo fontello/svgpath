@@ -225,6 +225,20 @@ describe('API', function () {
         'M10 0L20 0'
       );
     });
+
+    it('rotate abs arc', function () {
+      assert.equal(
+        svgpath('M 100 100 A 90 30 0 1 1 200 200').rotate(45).round(0).toString(),
+        'M0 141A90 30 45 1 1 0 283'
+      );
+    });
+
+    it('rotate rel arc', function () {
+      assert.equal(
+        svgpath('M 100 100 a 90 30 15 1 1 200 200').rotate(20).round(0).toString(),
+        'M60 128a90 30 35 1 1 120 256'
+      );
+    });
   });
 
 
