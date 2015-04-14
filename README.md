@@ -61,29 +61,30 @@ Converts all path commands to relative. Useful to reduce output size.
 
 ### .scale(sx [, sy]) -> self
 
-Rescale path (the same as SVG `scale` transformation).
+Rescale path (the same as SVG `scale` transformation). `sy` = `sx` by default.
 
 
 ### .translate(x [, y]) -> self
 
-Rescale path (the same as SVG `scale` transformation)
+Rescale path (the same as SVG `translate` transformation). `y` = 0 by default.
 
 
 ### .rotate(angle [, rx, ry]) -> self
 
 Rotate path to `angle` degree around (rx, ry) point. If rotation center not set,
-(0, 0) used.
+(0, 0) used. The same as SVG `rotate` transformation.
 
 
-### .rotate([ m1, m2, m3, m4, m5, m6 ]) -> self
+### .matrix([ m1, m2, m3, m4, m5, m6 ]) -> self
 
-Apply 3x2 transform matrix to path. Params - array.
+Apply 2x3 affine transform matrix to path. Params - array. The same as SVG
+`matrix` transformation.
 
 
 ### .transform(string) -> self
 
 Any SVG transform or their combination. For example `rotate(90) scale(2,3)`.
-The same format, as described in standard.
+The same format, as described in SVG standard for `transform` attribute.
 
 
 ### .unshort() -> self
