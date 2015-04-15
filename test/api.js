@@ -200,12 +200,12 @@ describe('API', function () {
     it('should handle arcs', function () {
       assert.equal(
         svgpath('M40 30a20 40 -45 0 1 20 50').scale(2, 1.5).toString(),
-        'M80 45a40 60-45 0 1 40 75'
+        'M80 45a40 60 315 0 1 40 75'
       );
 
       assert.equal(
         svgpath('M40 30A20 40 -45 0 1 20 50').scale(2, 1.5).toString(),
-        'M80 45A40 60-45 0 1 40 75'
+        'M80 45A40 60 315 0 1 40 75'
       );
     });
   });
@@ -331,12 +331,12 @@ describe('API', function () {
     it('should handle arcs', function () {
       assert.equal(
         svgpath('M40 30a20 40 -45 0 1 20 50').translate(10, 15).toString(),
-        'M50 45a20 40-45 0 1 20 50'
+        'M50 45a20 40 315 0 1 20 50'
       );
 
       assert.equal(
         svgpath('M40 30A20 40 -45 0 1 20 50').translate(10, 15).toString(),
-        'M50 45A20 40-45 0 1 30 65'
+        'M50 45A20 40 315 0 1 30 65'
       );
     });
   });
