@@ -425,5 +425,19 @@ describe('API', function () {
         'M100 100'
       );
     });
+
+    it('radii are zero', function () {
+      // both rx and ry are zero
+      assert.equal(
+        svgpath('M100 100A0 0 0 0 1 110 110').unarc().round().toString(),
+        'M100 100'
+      );
+
+      // rx is zero
+      assert.equal(
+        svgpath('M100 100A0 100 0 0 1 110 110').unarc().round().toString(),
+        'M100 100'
+      );
+    });
   });
 });
