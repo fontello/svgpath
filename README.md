@@ -27,14 +27,14 @@ Example
 ```js
 var svgpath = require('svgpath');
 
-var transformedPath = svgpath(__your_path__)
-  .scale(0.5)
-  .translate(100,200)
-  .abs()
-  .round(1) // Here the real rounding happens
-  .rel()
-  .round(1) // Fix js floating point error/garbage after rel()
-  .toString()
+var transformed = svgpath(__your_path__)
+                    .scale(0.5)
+                    .translate(100,200)
+                    .abs()
+                    .round(1) // Here the real rounding happens
+                    .rel()
+                    .round(1) // Fix js floating point error after rel()
+                    .toString();
 ```
 
 
@@ -44,9 +44,10 @@ API
 All methods are chainable (return self).
 
 
-### SvgPath(path) -> self
+### new SvgPath(path) -> self
 
-Constructor. Create SvgPath instance with chainable methods.
+Constructor. Creates new `SvgPath` class instance with chainable methods.
+`new` can be omited.
 
 
 ### .abs() -> self
@@ -93,6 +94,11 @@ Converts smooth curves (`T`, `t`, `S`, `s`) with missed control point to
 generic curves.
 
 
+### .unarc() -> self
+
+Replaces all arcs with bezier curves.
+
+
 ### .toString() -> string
 
 Returns final path string.
@@ -100,7 +106,7 @@ Returns final path string.
 
 ### .round(precision) -> self
 
-Round all coordinated to given decimal precision. By default round to integer.
+Round all coordinates to given decimal precision. By default round to integer.
 Useful to reduce resulting string size.
 
 (!) NOTE:
@@ -111,16 +117,18 @@ Useful to reduce resulting string size.
    `0.000000000000023`. So, you have to call .round(x) again. See example above.
 
 
-### .iterate(function [, keepLazyStack]) -> self
+### .iterate(function(segment, index, x, y) [, keepLazyStack]) -> self
 
-Apply iterator to all path segments. Each iterator receives `segment`, `index`,
-`x`, `y` params. Where (x, y) - absolute coordinates of segment start point.
+Apply iterator to all path segments.
 
-Also, you iterator can return array of new segments, that should replace
-current one. On empty array current segment will be deleted.
+- Each iterator receives `segment`, `index`, `x` and `y` params.
+  Where (x, y) - absolute coordinates of segment start point.
+- Iterator can modify current segment directly (return nothing in this case).
+- Iterator can return array of new segments to replace current one (`[]` means
+  that current segment should be delated).
 
-If seconnd param `keepLazyStack` set to `true`, then iterator will not evaluate
-stacked transforms prior to run.
+If second param `keepLazyStack` set to `true`, then iterator will not evaluate
+stacked transforms prior to run. That can be useful to optimize calculations.
 
 
 Authors

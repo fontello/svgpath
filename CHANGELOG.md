@@ -1,11 +1,12 @@
 1.1.0 / WIP
 ------------------
 
-- Unified transformations logic.
-- Added `.matrix` and `.rodate()` methods.
+- Unified transformations math.
+- Added `.matrix` and `.rotate()`.
+- Added `.unarc()` - convert arcs to curves.
 - Evaluate curried transforms lazily.
-- Coverage improvement.
-- Minor optimisation & code refactoring.
+- 100% tests coverage.
+- Minor optimisations & code refactoring.
 
 
 1.0.7 / 2014-12-05
