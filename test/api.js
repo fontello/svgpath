@@ -29,10 +29,10 @@ describe('API', function () {
       );
     });
 
-    it.skip('should handle relative paths', function () {
+    it('should handle relative paths', function () {
       assert.equal(
         svgpath('M30 50 c 10 30, 30 30, 40 0 s 30 -30, 40 0').unshort().toString(),
-        'M30 50 c10 30 30 30 40 0 10 -30 30 -30 40 0'
+        'M30 50c10 30 30 30 40 0 10-30 30-30 40 0'
       );
     });
   });
@@ -60,10 +60,10 @@ describe('API', function () {
       );
     });
 
-    it.skip('should handle relative paths', function () {
+    it('should handle relative paths', function () {
       assert.equal(
         svgpath('M30 50 q 20 20, 40 0 t 40 0').unshort().toString(),
-        'M30 50q20 20 40 0 20 -20 40 0'
+        'M30 50q20 20 40 0 20-20 40 0'
       );
     });
   });
