@@ -1,5 +1,3 @@
-/*global describe, it*/
-
 'use strict';
 
 
@@ -437,6 +435,62 @@ describe('API', function () {
       assert.equal(
         svgpath('M100 100A0 100 0 0 1 110 110').unarc().round().toString(),
         'M100 100'
+      );
+    });
+  });
+
+
+  describe('arc transform edge cases', function () {
+    it('replace arcs rx/ry = 0 with lines', function () {
+      assert.equal(
+        svgpath('M40 30a0 40 -45 0 1 20 50Z M40 30A20 0 -45 0 1 20 50Z').scale(2, 2).toString(),
+        'M80 60l40 100ZM80 60L40 100Z'
+      );
+    });
+
+    it('drop arcs with end point === start point', function () {
+      assert.equal(
+        svgpath('M40 30a20 40 -45 0 1 0 0').scale(2, 2).toString(),
+        'M80 60'
+      );
+
+      assert.equal(
+        svgpath('M40 30A20 40 -45 0 1 40 30').scale(2, 2).toString(),
+        'M80 60'
+      );
+    });
+
+    it('to line at scale x|y = 0 ', function () {
+      assert.equal(
+        svgpath('M40 30a20 40 -45 0 1 20 50').scale(0, 1).toString(),
+        'M0 30l0 50'
+      );
+
+      assert.equal(
+        svgpath('M40 30A20 40 -45 0 1 20 50').scale(1, 0).toString(),
+        'M40 0L20 0'
+      );
+    });
+
+    it('rotate to +/- 90 degree', function () {
+      assert.equal(
+        svgpath('M40 30a20 40 -45 0 1 20 50').rotate(90).round(2).toString(),
+        'M-30 40a20 40 45 0 1-50 20'
+      );
+
+      assert.equal(
+        svgpath('M40 30a20 40 -45 0 1 20 50').matrix([ 0, 1, -1, 0, 0, 0 ]).toString(),
+        'M-30 40a20 40 45 0 1-50 20'
+      );
+
+      assert.equal(
+        svgpath('M40 30a20 40 -45 0 1 20 50').rotate(-90).round(2).toString(),
+        'M30-40a20 40-135 0 1 50-20'
+      );
+
+      assert.equal(
+        svgpath('M40 30a20 40 -45 0 1 20 50').matrix([ 0, -1, 1, 0, 0, 0 ]).toString(),
+        'M30-40a20 40-135 0 1 50-20'
       );
     });
   });
