@@ -1,10 +1,12 @@
-1.1.0 / WIP
+2.0.0 / 2015-04-16
 ------------------
 
 - Unified transformations math.
 - Added `.matrix` and `.rotate()`.
 - Added `.unarc()` - convert arcs to curves.
 - Evaluate curried transforms lazily.
+- Fixed `.unshort()` - now relative commands processed too.
+- Fixed `.round()` - no more precision loss on relative coordinated.
 - 100% tests coverage.
 - Minor optimisations & code refactoring.
 

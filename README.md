@@ -30,10 +30,8 @@ var svgpath = require('svgpath');
 var transformed = svgpath(__your_path__)
                     .scale(0.5)
                     .translate(100,200)
-                    .abs()
-                    .round(1) // Here the real rounding happens
                     .rel()
-                    .round(1) // Fix js floating point error after rel()
+                    .round(1)
                     .toString();
 ```
 
@@ -90,8 +88,8 @@ The same format, as described in SVG standard for `transform` attribute.
 
 ### .unshort() -> self
 
-Converts smooth curves (`T`, `t`, `S`, `s`) with missed control point to
-generic curves.
+Converts smooth curves `T`/`t`/`S`/`s` with "missed" control point to
+generic curves (`Q`/`q`/`C`/`c`).
 
 
 ### .unarc() -> self
@@ -107,14 +105,7 @@ Returns final path string.
 ### .round(precision) -> self
 
 Round all coordinates to given decimal precision. By default round to integer.
-Useful to reduce resulting string size.
-
-(!) NOTE:
-
-1. You should apply `abs()` first, because relative coordinate summarize
-   precision errors.
-2. After .rel() call, your rounded values can be littered with tail like
-   `0.000000000000023`. So, you have to call .round(x) again. See example above.
+Useful to reduce resulting output string size.
 
 
 ### .iterate(function(segment, index, x, y) [, keepLazyStack]) -> self
