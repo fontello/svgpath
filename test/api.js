@@ -111,6 +111,13 @@ describe('API', function () {
         'M40 30A20 40-45 0 1 60 80'
       );
     });
+
+    it('should track position after z', function () {
+      assert.equal(
+        svgpath('M10 10 l10 0 l0 10 Z l 0 10 l 10 0 z l-1-1').abs().toString(),
+        'M10 10L20 10 20 20ZL10 20 20 20ZL9 9'
+      );
+    });
   });
 
 
@@ -154,6 +161,13 @@ describe('API', function () {
       assert.equal(
         svgpath('M40 30A20 40 -45 0 1 60 80').rel().toString(),
         'm40 30a20 40-45 0 1 20 50'
+      );
+    });
+
+    it('should track position after z', function () {
+      assert.equal(
+        svgpath('M10 10 L20 10 L20 20 Z L10 20 L20 20 z L9 9').rel().toString(),
+        'M10 10l10 0l0 10zl0 10 l10 0zl-1-1'
       );
     });
   });
