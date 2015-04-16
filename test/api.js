@@ -167,7 +167,7 @@ describe('API', function () {
     it('should track position after z', function () {
       assert.equal(
         svgpath('M10 10 L20 10 L20 20 Z L10 20 L20 20 z L9 9').rel().toString(),
-        'M10 10l10 0l0 10zl0 10 l10 0zl-1-1'
+        'm10 10l10 0 0 10zl0 10 10 0zl-1-1'
       );
     });
   });
@@ -248,7 +248,7 @@ describe('API', function () {
     it('rotate rel arc', function () {
       assert.equal(
         svgpath('M 100 100 a 90 30 15 1 1 200 200').rotate(20).round(0).toString(),
-        'M60 128a90 30 35 1 1 120 256'
+        'M60 128a90 30 35 1 1 119 257'
       );
     });
   });
@@ -373,6 +373,27 @@ describe('API', function () {
       assert.equal(
         svgpath('M10.123 10.456L20.4351 30.0000').round(2).toString(),
         'M10.12 10.46L20.44 30'
+      );
+    });
+
+    it('should track errors', function () {
+      assert.equal(
+        svgpath('M1.2 1.4l1.2 1.4 l1.2 1.4').round().toString(),
+        'M1 1l1 2 2 1'
+      );
+    });
+
+    it('should track errors #2', function () {
+      assert.equal(
+        svgpath('M1.2 1.4 H2.4 h1.2 v2.4 h-2.4 V2.4 v-1.2').round().toString(),
+        'M1 1H2h2v3h-3V2v-1'
+      );
+    });
+
+    it('should track errors for contour start', function () {
+      assert.equal(
+        svgpath('m0.4 0.2zm0.4 0.2m0.4 0.2m0.4 0.2zm0.4 0.2').round().abs().toString(),
+        'M0 0ZM1 0 1 1 2 1ZM2 1'
       );
     });
   });
