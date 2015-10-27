@@ -45,7 +45,7 @@ describe('Transform', function () {
 
       assert.equal(
         svgpath(p).translate(100, 100).rel().toString(),
-        'm170 170l20 20-20 0 0-20'
+        'M170 170l20 20-20 0 0-20'
       );
     });
   });

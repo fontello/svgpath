@@ -125,49 +125,49 @@ describe('API', function () {
     it('should convert line', function () {
       assert.equal(
         svgpath('M10 10 L30 30').rel().toString(),
-        'm10 10l20 20'
+        'M10 10l20 20'
       );
     });
 
     it("shouldn't process existing line", function () {
       assert.equal(
         svgpath('m10 10 l30 30').rel().toString(),
-        'm10 10l30 30'
+        'M10 10l30 30'
       );
     });
 
     it('should convert multi-segment curve', function () {
       assert.equal(
         svgpath('M10 10 C 20 40 40 40 50 10 60 -20 70 -20 90 10').rel().toString(),
-        'm10 10c10 30 30 30 40 0 10-30 20-30 40 0'
+        'M10 10c10 30 30 30 40 0 10-30 20-30 40 0'
       );
     });
 
     it('should handle horizontal lines', function () {
       assert.equal(
         svgpath('M10 10H40h50').rel().toString(),
-        'm10 10h30 50'
+        'M10 10h30 50'
       );
     });
 
     it('should handle vertical lines', function () {
       assert.equal(
         svgpath('M10 10V40v50').rel().toString(),
-        'm10 10v30 50'
+        'M10 10v30 50'
       );
     });
 
     it('should handle arcs', function () {
       assert.equal(
         svgpath('M40 30A20 40 -45 0 1 60 80').rel().toString(),
-        'm40 30a20 40-45 0 1 20 50'
+        'M40 30a20 40-45 0 1 20 50'
       );
     });
 
     it('should track position after z', function () {
       assert.equal(
         svgpath('M10 10 L20 10 L20 20 Z L10 20 L20 20 z L9 9').rel().toString(),
-        'm10 10l10 0 0 10zl0 10 10 0zl-1-1'
+        'M10 10l10 0 0 10zl0 10 10 0zl-1-1'
       );
     });
   });
