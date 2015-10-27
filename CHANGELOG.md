@@ -1,3 +1,9 @@
+2.0.1 / WIP
+------------------
+
+- First `m` in path should be processed as absolute (`M`).
+
+
 2.0.0 / 2015-04-16
 ------------------
 

@@ -34,6 +34,20 @@ describe('Transform', function () {
         'M30 20C35 25 40 20 35 25'
       );
     });
+
+    it('rel after translate sequence should not break translate if first m (#10)', function () {
+      var p = 'm70 70 l20 20 l-20 0 l0 -20';
+
+      assert.equal(
+        svgpath(p).translate(100, 100).toString(),
+        'M170 170l20 20-20 0 0-20'
+      );
+
+      assert.equal(
+        svgpath(p).translate(100, 100).rel().toString(),
+        'm170 170l20 20-20 0 0-20'
+      );
+    });
   });
 
 
@@ -177,6 +191,26 @@ describe('Transform', function () {
       assert.equal(
         svgpath('M10 10 L15 15').transform('   ').toString(),
         'M10 10L15 15'
+      );
+    });
+
+    it('first m should be processed as absolute', function () {
+      var p = svgpath('m70 70 70 70');
+
+      // By default parser force first 'm' to upper case
+      // and we don't fall into troubles.
+      assert.equal(
+        p.translate(100, 100).toString(),
+        'M170 170l70 70'
+      );
+
+      // Emulate first 'm'.
+      p = svgpath('m70 70 70 70');
+      p.segments[0][0] = 'm';
+
+      assert.equal(
+        p.translate(100, 100).toString(),
+        'm170 170l70 70'
       );
     });
   });
