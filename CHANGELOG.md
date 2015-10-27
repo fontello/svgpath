@@ -1,7 +1,8 @@
-2.0.1 / WIP
+2.1.0 / 2015-10-27
 ------------------
 
 - First `m` in path should be processed as absolute (`M`).
+- Don't force first `M` -> `m` on `.rel()`.
 
 
 2.0.0 / 2015-04-16
