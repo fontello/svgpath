@@ -18,7 +18,7 @@
   },
   "files": [
     "index.js",
-    "lib/",
+    "lib/"
   ],
   "devDependencies": {
     "ansi": "*",
