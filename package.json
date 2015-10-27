@@ -16,6 +16,10 @@
   "scripts": {
     "test": "make test"
   },
+  "files": [
+    "index.js",
+    "lib/",
+  ],
   "devDependencies": {
     "ansi": "*",
     "benchmark": "*",
