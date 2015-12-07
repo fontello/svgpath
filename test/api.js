@@ -7,6 +7,22 @@ var svgpath = require('../');
 
 describe('API', function () {
 
+  describe('toString', function () {
+    it('should not collapse multiple M', function () {
+      assert.equal(
+        svgpath('M 10 10 M 10 100 M 100 100 M 100 10 Z').toString(),
+        'M10 10M10 100M100 100M100 10Z'
+      );
+    });
+
+    it('should not collapse multiple m', function () {
+      assert.equal(
+        svgpath('m 10 10 m 10 100 m 100 100 m 100 10 z').toString(),
+        'M10 10m10 100m100 100m100 10z'
+      );
+    });
+  });
+
   describe('unshort - cubic', function () {
     it("shouldn't change full arc", function () {
       assert.equal(
@@ -393,7 +409,7 @@ describe('API', function () {
     it('should track errors for contour start', function () {
       assert.equal(
         svgpath('m0.4 0.2zm0.4 0.2m0.4 0.2m0.4 0.2zm0.4 0.2').round().abs().toString(),
-        'M0 0ZM1 0 1 1 2 1ZM2 1'
+        'M0 0ZM1 0M1 1M2 1ZM2 1'
       );
     });
   });
