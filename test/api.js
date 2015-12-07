@@ -529,4 +529,20 @@ describe('API', function () {
       );
     });
   });
+
+  describe('output path string', function () {
+    it('optimizes repeat command names by default', function () {
+      assert.equal(
+        svgpath('M 0 0 M 100 0 M 100 100 M 0 100').toString(),
+        'M0 0 100 0 100 100 0 100'
+      );
+    });
+
+    it('keeps repeat command names with keepRepeatCommandNames option', function () {
+      assert.equal(
+        svgpath('M 0 0 M 100 0 M 100 100 M 0 100').toString(true),
+        'M0 0M100 0M100 100M0 100'
+      );
+    });
+  });
 });
