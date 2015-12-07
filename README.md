@@ -97,9 +97,11 @@ generic curves (`Q`/`q`/`C`/`c`).
 Replaces all arcs with bezier curves.
 
 
-### .toString() -> string
+### .toString([keepRepeatCommandNames]) -> string
 
 Returns final path string.
+
+If the first parameter is set to `true`, it will disable optimizing for repeated command names.
 
 
 ### .round(precision) -> self
