@@ -556,5 +556,13 @@ describe('API', function () {
         'M30-40a20 40 45 0 1 50-20'
       );
     });
+
+    it('process circle-like segments', function () {
+      assert.equal(
+        svgpath('M50 50A30 30 -45 0 1 100 100').scale(0.5).round(0).toString(),
+        'M25 25A15 15 0 0 1 50 50'
+      );
+    });
+
   });
 });
