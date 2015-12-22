@@ -227,12 +227,12 @@ describe('API', function () {
 
     it('should handle arcs', function () {
       assert.equal(
-        svgpath('M40 30a20 40 -45 0 1 20 50').scale(2, 1.5).round().toString(),
+        svgpath('M40 30a20 40 -45 0 1 20 50').scale(2, 1.5).round(0).toString(),
         'M80 45a72 34 32.04 0 1 40 75'
       );
 
       assert.equal(
-        svgpath('M40 30A20 40 -45 0 1 20 50').scale(2, 1.5).round().toString(),
+        svgpath('M40 30A20 40 -45 0 1 20 50').scale(2, 1.5).round(0).toString(),
         'M80 45A72 34 32.04 0 1 40 75'
       );
     });
@@ -242,28 +242,28 @@ describe('API', function () {
   describe('rotate', function () {
     it('rotate by 90 degrees about point(10, 10)', function () {
       assert.equal(
-        svgpath('M10 10L15 10').rotate(90, 10, 10).round().toString(),
+        svgpath('M10 10L15 10').rotate(90, 10, 10).round(0).toString(),
         'M10 10L10 15'
       );
     });
 
     it('rotate by -90 degrees about point (0,0)', function () {
       assert.equal(
-        svgpath('M0 10L0 20').rotate(-90).round().toString(),
+        svgpath('M0 10L0 20').rotate(-90).round(0).toString(),
         'M10 0L20 0'
       );
     });
 
     it('rotate abs arc', function () {
       assert.equal(
-        svgpath('M 100 100 A 90 30 0 1 1 200 200').rotate(45).round().toString(),
+        svgpath('M 100 100 A 90 30 0 1 1 200 200').rotate(45).round(0).toString(),
         'M0 141A90 30 45 1 1 0 283'
       );
     });
 
     it('rotate rel arc', function () {
       assert.equal(
-        svgpath('M 100 100 a 90 30 15 1 1 200 200').rotate(20).round().toString(),
+        svgpath('M 100 100 a 90 30 15 1 1 200 200').rotate(20).round(0).toString(),
         'M60 128a90 30 35 1 1 119 257'
       );
     });
@@ -296,12 +296,12 @@ describe('API', function () {
 
     it('should handle arcs', function () {
       assert.equal(
-        svgpath('M40 30a20 40 -45 0 1 20 50').matrix([ 1.5, 0.5, 0.5, 1.5, 10, 15 ]).round().toString(),
+        svgpath('M40 30a20 40 -45 0 1 20 50').matrix([ 1.5, 0.5, 0.5, 1.5, 10, 15 ]).round(0).toString(),
         'M85 80a80 20 45 0 1 55 85'
       );
 
       assert.equal(
-        svgpath('M40 30A20 40 -45 0 1 20 50').matrix([ 1.5, 0.5, 0.5, 1.5, 10, 15 ]).round().toString(),
+        svgpath('M40 30A20 40 -45 0 1 20 50').matrix([ 1.5, 0.5, 0.5, 1.5, 10, 15 ]).round(0).toString(),
         'M85 80A80 20 45 0 1 65 100'
       );
     });
@@ -318,14 +318,14 @@ describe('API', function () {
 
     it('scale + rotate', function () {
       assert.equal(
-        svgpath('M0 0 L 10 10 20 10').scale(2, 3).rotate(90).round().toString(),
+        svgpath('M0 0 L 10 10 20 10').scale(2, 3).rotate(90).round(0).toString(),
         'M0 0L-30 20-30 40'
       );
     });
 
     it('empty', function () {
       assert.equal(
-        svgpath('M0 0 L 10 10 20 10').translate(0).scale(1).rotate(0, 10, 10).round().toString(),
+        svgpath('M0 0 L 10 10 20 10').translate(0).scale(1).rotate(0, 10, 10).round(0).toString(),
         'M0 0L10 10 20 10'
       );
     });
@@ -370,12 +370,12 @@ describe('API', function () {
 
     it('should handle arcs', function () {
       assert.equal(
-        svgpath('M40 30a20 40 -45 0 1 20 50').translate(10, 15).round().toString(),
+        svgpath('M40 30a20 40 -45 0 1 20 50').translate(10, 15).round(0).toString(),
         'M50 45a40 20 45 0 1 20 50'
       );
 
       assert.equal(
-        svgpath('M40 30A20 40 -45 0 1 20 50').translate(10, 15).round().toString(),
+        svgpath('M40 30A20 40 -45 0 1 20 50').translate(10, 15).round(0).toString(),
         'M50 45A40 20 45 0 1 30 65'
       );
     });
@@ -385,14 +385,14 @@ describe('API', function () {
   describe('round', function () {
     it('should round arcs', function () {
       assert.equal(
-        svgpath('M10 10 A12.5 17.5 45.5 0 0 15.5 19.5').round().toString(),
+        svgpath('M10 10 A12.5 17.5 45.5 0 0 15.5 19.5').round(0).toString(),
         'M10 10A13 18 45.5 0 0 16 20'
       );
     });
 
     it('should round curves', function () {
       assert.equal(
-        svgpath('M10 10 c 10.12 30.34 30.56 30 40.00 0.12').round().toString(),
+        svgpath('M10 10 c 10.12 30.34 30.56 30 40.00 0.12').round(0).toString(),
         'M10 10c10 30 31 30 40 0'
       );
     });
@@ -406,21 +406,21 @@ describe('API', function () {
 
     it('should track errors', function () {
       assert.equal(
-        svgpath('M1.2 1.4l1.2 1.4 l1.2 1.4').round().toString(),
+        svgpath('M1.2 1.4l1.2 1.4 l1.2 1.4').round(0).toString(),
         'M1 1l1 2 2 1'
       );
     });
 
     it('should track errors #2', function () {
       assert.equal(
-        svgpath('M1.2 1.4 H2.4 h1.2 v2.4 h-2.4 V2.4 v-1.2').round().toString(),
+        svgpath('M1.2 1.4 H2.4 h1.2 v2.4 h-2.4 V2.4 v-1.2').round(0).toString(),
         'M1 1H2h2v3h-3V2v-1'
       );
     });
 
     it('should track errors for contour start', function () {
       assert.equal(
-        svgpath('m0.4 0.2zm0.4 0.2m0.4 0.2m0.4 0.2zm0.4 0.2').round().abs().toString(),
+        svgpath('m0.4 0.2zm0.4 0.2m0.4 0.2m0.4 0.2zm0.4 0.2').round(0).abs().toString(),
         'M0 0ZM1 0M1 1M2 1ZM2 1'
       );
     });
@@ -430,21 +430,21 @@ describe('API', function () {
   describe('unarc', function () {
     it('almost complete arc gets expanded to 4 curves', function () {
       assert.equal(
-        svgpath('M100 100 A30 50 0 1 1 110 110').unarc().round().toString(),
+        svgpath('M100 100 A30 50 0 1 1 110 110').unarc().round(0).toString(),
         'M100 100C89 83 87 54 96 33 105 12 122 7 136 20 149 33 154 61 147 84 141 108 125 119 110 110'
       );
     });
 
     it('small arc gets expanded to one curve', function () {
       assert.equal(
-        svgpath('M100 100 a30 50 0 0 1 30 30').unarc().round().toString(),
+        svgpath('M100 100 a30 50 0 0 1 30 30').unarc().round(0).toString(),
         'M100 100C113 98 125 110 130 130'
       );
     });
 
     it('unarc a circle', function () {
       assert.equal(
-        svgpath('M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0').unarc().round().toString(),
+        svgpath('M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0').unarc().round(0).toString(),
         'M100 100m-75 0C25 141 59 175 100 175 141 175 175 141 175 100 175 59 141 25 100 25 59 25 25 59 25 100'
       );
     });
@@ -482,7 +482,7 @@ describe('API', function () {
       // nothing shall be drawn in this case.
       //
       assert.equal(
-        svgpath('M100 100A123 456 90 0 1 100 100').unarc().round().toString(),
+        svgpath('M100 100A123 456 90 0 1 100 100').unarc().round(0).toString(),
         'M100 100'
       );
     });
@@ -490,13 +490,13 @@ describe('API', function () {
     it('radii are zero', function () {
       // both rx and ry are zero
       assert.equal(
-        svgpath('M100 100A0 0 0 0 1 110 110').unarc().round().toString(),
+        svgpath('M100 100A0 0 0 0 1 110 110').unarc().round(0).toString(),
         'M100 100'
       );
 
       // rx is zero
       assert.equal(
-        svgpath('M100 100A0 100 0 0 1 110 110').unarc().round().toString(),
+        svgpath('M100 100A0 100 0 0 1 110 110').unarc().round(0).toString(),
         'M100 100'
       );
     });
@@ -537,22 +537,22 @@ describe('API', function () {
 
     it('rotate to +/- 90 degree', function () {
       assert.equal(
-        svgpath('M40 30a20 40 -45 0 1 20 50').rotate(90).round().toString(),
+        svgpath('M40 30a20 40 -45 0 1 20 50').rotate(90).round(0).toString(),
         'M-30 40a20 40 45 0 1-50 20'
       );
 
       assert.equal(
-        svgpath('M40 30a20 40 -45 0 1 20 50').matrix([ 0, 1, -1, 0, 0, 0 ]).round().toString(),
+        svgpath('M40 30a20 40 -45 0 1 20 50').matrix([ 0, 1, -1, 0, 0, 0 ]).round(0).toString(),
         'M-30 40a20 40 45 0 1-50 20'
       );
 
       assert.equal(
-        svgpath('M40 30a20 40 -45 0 1 20 50').rotate(-90).round().toString(),
+        svgpath('M40 30a20 40 -45 0 1 20 50').rotate(-90).round(0).toString(),
         'M30-40a20 40 45 0 1 50-20'
       );
 
       assert.equal(
-        svgpath('M40 30a20 40 -45 0 1 20 50').matrix([ 0, -1, 1, 0, 0, 0 ]).round().toString(),
+        svgpath('M40 30a20 40 -45 0 1 20 50').matrix([ 0, -1, 1, 0, 0, 0 ]).round(0).toString(),
         'M30-40a20 40 45 0 1 50-20'
       );
     });
