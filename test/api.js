@@ -563,6 +563,36 @@ describe('API', function () {
         'M25 25A15 15 0 0 1 50 50'
       );
     });
+  });
 
+  describe('bounding box', function () {
+    it('get the bounding box', function () {
+      assert.equal(
+        svgpath('M10,10 c 10,0 10,10 0,10 s -10,0 0,10 q 10,10 15 20 t 10,0 a25,25 -30 0,1 50,-25z').toViewBoxString(2),
+        '2.50 9.54 82.50 45.46'
+      );
+    });
+
+    it('matrix to fit in a box', function () {
+      assert.equal(
+        svgpath('M10,10 h10 v20').toBox('0 0 100 100').toViewBoxString(),
+        '25 0 50 100'
+      );
+
+      assert.equal(
+        svgpath('M10,10 h10 v20').toBox('0 0 100 100 slice xMinYMax').toViewBoxString(),
+        '0 -100 100 200'
+      );
+
+      assert.equal(
+        svgpath('M10,10 h10 v20').toBox('0 0 100 100 fit').toViewBoxString(),
+        '0 0 100 100'
+      );
+
+      assert.equal(
+        svgpath('M10,10 h10 v20').toBox('0 0 100 100 move xMaxYMid').toViewBoxString(),
+        '90 40 10 20'
+      );
+    });
   });
 });
