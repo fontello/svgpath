@@ -1,4 +1,4 @@
-2.1.2 / WIP
+2.1.2 / 2015-12-22
 ------------------
 
 - Fixed arc transforms, #13. Thanks to @kpym.
