@@ -491,13 +491,13 @@ describe('API', function () {
       // both rx and ry are zero
       assert.equal(
         svgpath('M100 100A0 0 0 0 1 110 110').unarc().round(0).toString(),
-        'M100 100'
+        'M100 100L110 110'
       );
 
       // rx is zero
       assert.equal(
         svgpath('M100 100A0 100 0 0 1 110 110').unarc().round(0).toString(),
-        'M100 100'
+        'M100 100L110 110'
       );
     });
   });
