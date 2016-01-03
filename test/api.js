@@ -490,7 +490,7 @@ describe('API', function () {
       //
       assert.equal(
         svgpath('M100 100A123 456 90 0 1 100 100').unarc().round(0).toString(),
-        'M100 100'
+        'M100 100L100 100'
       );
     });
 
