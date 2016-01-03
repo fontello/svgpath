@@ -1,6 +1,6 @@
 {
   "name": "svgpath",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "Low level toolkit for SVG paths transformations.",
   "keywords": [
     "svg",

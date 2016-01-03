@@ -1,8 +1,9 @@
-2.1.4 / WIP
+2.1.4 / 2016-01-03
 ------------------
 
 - More strict params count and exponent parse.
 - Properly correct round error on contour end.
+- Never drop empty arcs. Replace with lines to avoid collisions on `S A S`.
 
 
 2.1.3 / 2015-12-30
