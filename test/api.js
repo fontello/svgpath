@@ -492,6 +492,11 @@ describe('API', function () {
         svgpath('M100 100A123 456 90 0 1 100 100').unarc().round(0).toString(),
         'M100 100L100 100'
       );
+
+      assert.equal(
+        svgpath('M100 100a123 456 90 0 1 0 0').unarc().round(0).toString(),
+        'M100 100l0 0'
+      );
     });
 
     it('radii are zero', function () {
@@ -521,12 +526,12 @@ describe('API', function () {
     it('drop arcs with end point === start point', function () {
       assert.equal(
         svgpath('M40 30a20 40 -45 0 1 0 0').scale(2, 2).toString(),
-        'M80 60'
+        'M80 60l0 0'
       );
 
       assert.equal(
         svgpath('M40 30A20 40 -45 0 1 40 30').scale(2, 2).toString(),
-        'M80 60'
+        'M80 60L80 60'
       );
     });
 
