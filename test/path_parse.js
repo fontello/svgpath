@@ -54,8 +54,8 @@ describe('Path parse', function () {
     assert.equal(svgpath('M+').err, 'SvgPath: param should start with 0..9 or `.` (at pos 2)');
     assert.equal(svgpath('M00').err, 'SvgPath: numbers started with `0` such as `09` are ilegal (at pos 1)');
     assert.equal(svgpath('M0e').err, 'SvgPath: invalid float exponent (at pos 3)');
-
     assert.equal(svgpath('M0').err, 'SvgPath: missed param (at pos 2)');
+    assert.equal(svgpath('M0,0,').err, 'SvgPath: missed param (at pos 5)');
     assert.equal(svgpath('M0 .e3').err, 'SvgPath: invalid float exponent (at pos 4)');
   });
 });
