@@ -424,6 +424,13 @@ describe('API', function () {
         'M0 0ZM1 0M1 1M2 1ZM2 1'
       );
     });
+
+    it('reset delta error on contour end', function () {
+      assert.equal(
+        svgpath('m.1 .1l.3 .3zm.1 .1l.3 .3zm0 0z').round(0).abs().toString(),
+        'M0 0L0 0ZM0 0L1 1ZM0 0Z'
+      );
+    });
   });
 
 

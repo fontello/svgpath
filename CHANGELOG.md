@@ -2,6 +2,7 @@
 ------------------
 
 - More strict params count and exponent parse.
+- Properly correct round error on contour end.
 
 
 2.1.3 / 2015-12-30
