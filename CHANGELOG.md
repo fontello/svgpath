@@ -1,4 +1,4 @@
-2.1.5 / WIP
+2.1.5 / 2016-01-03
 ------------------
 
 - Improved parser error messages.
