@@ -1,3 +1,9 @@
+2.1.4 / WIP
+------------------
+
+- More strict params count and exponent parse.
+
+
 2.1.3 / 2015-12-30
 ------------------
 
