@@ -50,6 +50,7 @@ describe('Path parse', function () {
   it('errors', function () {
     assert.equal(svgpath('0').err, 'SvgPath: bad command 0 (at pos 0)');
     assert.equal(svgpath('U').err, 'SvgPath: bad command U (at pos 0)');
+    assert.equal(svgpath('M0 0G 1').err, 'SvgPath: bad command G (at pos 4)');
     assert.equal(svgpath('z').err, 'SvgPath: string should start with `M` or `m`');
     assert.equal(svgpath('M+').err, 'SvgPath: param should start with 0..9 or `.` (at pos 2)');
     assert.equal(svgpath('M00').err, 'SvgPath: numbers started with `0` such as `09` are ilegal (at pos 1)');
