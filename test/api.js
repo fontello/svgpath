@@ -582,5 +582,17 @@ describe('API', function () {
         'M158.7 277.9A228.7 113.2 90 1 0 169.3 734.8'
       );
     });
+
+    it('should flip sweep flag if image is flipped', function () {
+      assert.equal(
+        svgpath('M10 10A20 15 90 0 1 30 10').scale(1, -1).translate(0, 40).toString(),
+        'M10 30A20 15 90 0 0 30 30'
+      );
+
+      assert.equal(
+        svgpath('M10 10A20 15 90 0 1 30 10').scale(-1, -1).translate(40, 40).toString(),
+        'M30 30A20 15 90 0 1 10 30'
+      );
+    });
   });
 });
