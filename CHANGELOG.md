@@ -1,3 +1,9 @@
+2.1.6 / 2016-03-09
+------------------
+
+- Fixed arc transforms for edge cases (precision + sweep flag), #23.
+
+
 2.1.5 / 2016-01-03
 ------------------
 
