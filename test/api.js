@@ -576,5 +576,11 @@ describe('API', function () {
       );
     });
 
+    it('almost zero eigen values', function () {
+      assert.equal(
+        svgpath('M148.7 277.9A228.7 113.2 90 1 0 159.3 734.8').translate(10).round(1).toString(),
+        'M158.7 277.9A228.7 113.2 90 1 0 169.3 734.8'
+      );
+    });
   });
 });
