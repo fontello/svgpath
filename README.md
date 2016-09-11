@@ -70,8 +70,18 @@ Rescale path (the same as SVG `translate` transformation). `y` = 0 by default.
 
 ### .rotate(angle [, rx, ry]) -> self
 
-Rotate path to `angle` degree around (rx, ry) point. If rotation center not set,
+Rotate path to `angle` degrees around (rx, ry) point. If rotation center not set,
 (0, 0) used. The same as SVG `rotate` transformation.
+
+
+### .skewX(degrees) -> self
+
+Skew path along the X axis by `degrees` angle.
+
+
+### .skewY(degrees) -> self
+
+Skew path along the Y axis by `degrees` angle.
 
 
 ### .matrix([ m1, m2, m3, m4, m5, m6 ]) -> self

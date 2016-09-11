@@ -1,3 +1,11 @@
+2.2.0 / WIP
+------------------
+
+- Added `.skewX()` & `.skewY()` shortcuts.
+- Dropped `Makefile`, use npm instead.
+- Deps bump & cleanup.
+
+
 2.1.6 / 2016-03-09
 ------------------
 

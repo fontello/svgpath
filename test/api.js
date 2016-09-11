@@ -269,6 +269,28 @@ describe('API', function () {
     });
   });
 
+  describe('skew', function () {
+    // SkewX matrix [ 1, 0, 4, 1, 0, 0 ],
+    // x = x*1 + y*4 + 0 = x + y*4
+    // y = x*0 + y*1 + 0 = y
+    it('skewX', function () {
+      assert.equal(
+        svgpath('M5 5L15 20').skewX(75.96).round(0).toString(),
+        'M25 5L95 20'
+      );
+    });
+
+    // SkewY matrix [ 1, 4, 0, 1, 0, 0 ],
+    // x = x*1 + y*0 + 0 = x
+    // y = x*4 + y*1 + 0 = y + x*4
+    it('skewY', function () {
+      assert.equal(
+        svgpath('M5 5L15 20').skewY(75.96).round(0).toString(),
+        'M5 25L15 80'
+      );
+    });
+  });
+
 
   describe('matrix', function () {
     // x = x*1.5 + y/2 + ( absolute ? 10 : 0)
