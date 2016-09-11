@@ -1,7 +1,8 @@
-2.2.0 / WIP
+2.2.0 / 2016-09-11
 ------------------
 
 - Added `.skewX()` & `.skewY()` shortcuts.
+- Added typescript definitions.
 - Dropped `Makefile`, use npm instead.
 - Deps bump & cleanup.
 
