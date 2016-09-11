@@ -21,12 +21,11 @@
     "lib/"
   ],
   "devDependencies": {
-    "ansi": "*",
-    "benchmark": "*",
-    "coveralls": "~2.11.2",
-    "eslint": "0.19.0",
-    "eslint-plugin-nodeca": "~1.0.3",
-    "istanbul": "*",
-    "mocha": "*"
+    "ansi": "^0.3.1",
+    "benchmark": "^2.1.1",
+    "coveralls": "^2.11.2",
+    "eslint": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.0.2"
   }
 }
