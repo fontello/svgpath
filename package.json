@@ -14,7 +14,10 @@
   "license": "MIT",
   "repository": "fontello/svgpath",
   "scripts": {
-    "test": "make test"
+    "lint": "eslint .",
+    "test": "npm run lint && mocha",
+    "coverage": "rm -rf coverage && istanbul cover _mocha",
+    "report-coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "files": [
     "index.js",
