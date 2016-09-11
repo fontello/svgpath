@@ -28,5 +28,6 @@
     "eslint-plugin-nodeca": "~1.0.3",
     "istanbul": "*",
     "mocha": "*"
-  }
+  },
+  "typings": "svgpath.d.ts"
 }

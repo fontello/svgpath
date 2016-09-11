@@ -74,6 +74,18 @@ Rotate path to `angle` degree around (rx, ry) point. If rotation center not set,
 (0, 0) used. The same as SVG `rotate` transformation.
 
 
+### .skewX(angle) -> self
+
+Skews path along the x axis by `angle` degrees. The same as SVG `skewX` 
+transformation.
+
+
+### .skewY(angle) -> self
+
+Skews path along the y axis by `angle` degrees. The same as SVG `skewY` 
+transformation.
+
+
 ### .matrix([ m1, m2, m3, m4, m5, m6 ]) -> self
 
 Apply 2x3 affine transform matrix to path. Params - array. The same as SVG
