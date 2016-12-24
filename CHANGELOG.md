@@ -1,3 +1,10 @@
+2.2.1 / 2016-12-24
+------------------
+
+- Update typescript definition for ts@2, #28.
+- Replace unicode characters with ascii ones, #27.
+
+
 2.2.0 / 2016-09-11
 ------------------
 
