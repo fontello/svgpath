@@ -6,11 +6,12 @@ svgpath
 [![Coverage Status](https://img.shields.io/coveralls/fontello/svgpath/master.svg?style=flat)](https://coveralls.io/r/fontello/svgpath?branch=master)
 
 
-> Low level toolkit for SVG paths transformations. Sometime you can't use
-`transform` attributes and have to apply changes to svg paths directly.
+> Low level toolkit for SVG paths transformations.
+Sometimes you can't use `transform` attributes and have to apply changes to svg paths directly.
 Then this package is for you :) !
 
-Note, this package works with `paths`, not with svg xml sources.
+Note: this package works with [path data](https://www.w3.org/TR/SVG11/paths.html#PathData) strings,
+not with full svg xml sources.
 
 
 Install
