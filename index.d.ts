@@ -12,7 +12,7 @@ declare module "svgpath" {
     transform(str: string): SvgPath;
     unshort(): SvgPath;
     unarc(): SvgPath;
-    toString(): String;
+    toString(): string;
     round(precision: number): SvgPath;
     iterate(iterator: (segment: any[], index: number, x: number, y: number) => void, keepLazyStack?: boolean): SvgPath;
   }
