@@ -37,11 +37,11 @@ describe('Matrix', function () {
 
   it('compose', function () {
     m = matrix()
-          .translate(10, 10)
-          .translate(-10, -10)
-          .rotate(180, 10, 10)
-          .rotate(180, 10, 10)
-          .toArray();
+      .translate(10, 10)
+      .translate(-10, -10)
+      .rotate(180, 10, 10)
+      .rotate(180, 10, 10)
+      .toArray();
 
     // Need to round errors prior to compare
     assert.equal(+m[0].toFixed(2), 1);
@@ -54,8 +54,8 @@ describe('Matrix', function () {
 
   it('cache', function () {
     m = matrix()
-          .translate(10, 20)
-          .scale(2, 3);
+      .translate(10, 20)
+      .scale(2, 3);
 
     assert.strictEqual(m.cache, null);
     assert.deepEqual(m.toArray(), [ 2, 0, 0, 3, 10, 20 ]);
