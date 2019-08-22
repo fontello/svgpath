@@ -131,17 +131,3 @@ Apply iterator to all path segments.
 
 If second param `keepLazyStack` set to `true`, then iterator will not evaluate
 stacked transforms prior to run. That can be useful to optimize calculations.
-
-
-Authors
--------
-
-- Sergey Batishchev - [@snb2013](https://github.com/snb2013)
-- Vitaly Puzrin - [@puzrin](https://github.com/puzrin)
-- Alex Kocharin - [@rlidwka](https://github.com/rlidwka)
-
-
-License
--------
-
-[MIT](https://github.com/fontello/svgpath/blob/master/LICENSE)
