@@ -1,3 +1,10 @@
+2.2.3 / 2020-01-19
+------------------
+
+- Fix arc flags parse (accept 0 or 1 only), #41.
+- Typo fix in error message.
+
+
 2.2.2 / 2019-04-27
 ------------------
 
