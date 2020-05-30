@@ -49,6 +49,12 @@ Constructor. Creates new `SvgPath` class instance with chainable methods.
 `new` can be omited.
 
 
+### SvgPath.from(path|SvgPath) -> self
+
+Similar to `Array.from()`. Creates `SvgPath` instance from string or another
+instance (data will be cloned).
+
+
 ### .abs() -> self
 
 Converts all path commands to absolute.

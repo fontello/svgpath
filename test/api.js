@@ -7,6 +7,26 @@ var svgpath = require('../');
 
 describe('API', function () {
 
+  describe('from', function () {
+    it('string', function () {
+      assert.equal(
+        svgpath.from('M0 0 L 10 10').scale(2, 2).toString(),
+        'M0 0L20 20'
+      );
+    });
+
+    it('SvgPath instance', function () {
+      assert.equal(
+        svgpath.from(svgpath.from('M0 0 L 10 10').scale(2, 2)).toString(),
+        'M0 0L20 20'
+      );
+    });
+
+    it('invalid', function () {
+      assert.throws(function () { svgpath.from([]); });
+    });
+  });
+
   describe('toString', function () {
     it('should not collapse multiple M', function () {
       assert.equal(
