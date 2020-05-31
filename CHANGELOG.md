@@ -2,6 +2,8 @@
 ------------------
 
 - Added `SvgPath.from()` method.
+- Dev deps bump.
+- Use `nyc` for coverage reports.
 
 
 2.2.3 / 2020-01-19

@@ -15,9 +15,9 @@
   "repository": "fontello/svgpath",
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run lint && mocha",
-    "coverage": "rm -rf coverage && istanbul cover _mocha",
-    "report-coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
+    "test": "npm run lint && nyc mocha",
+    "coverage": "npm run test && nyc report --reporter html",
+    "report-coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "files": [
     "index.js",
@@ -29,7 +29,7 @@
     "benchmark": "^2.1.1",
     "coveralls": "^3.0.3",
     "eslint": "^7.1.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^7.2.0"
+    "mocha": "^7.2.0",
+    "nyc": "^15.0.1"
   }
 }
