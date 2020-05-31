@@ -637,4 +637,30 @@ describe('API', function () {
       );
     });
   });
+
+
+  describe('reverse', function () {
+    /* eslint-disable max-len */
+    it('consider Z like L(line) + Z(close) ', function () {
+      assert.deepEqual(
+        svgpath('M 1 2 Z').reverse().toString(),
+        'M1 2L1 2Z'
+      );
+    });
+
+    it('work with absolute coordinates', function () {
+      assert.deepEqual(
+        svgpath('M10 -20 Q-30 40 50 -70 T-80 90 Z M 0 0 C 100 -110 -120 130 140 -150 S -170 180 190 200 H210Z V210 A 220 230 240 0 0 -250 -260 L270 -280').reverse().toString(),
+        'M270-280L-250-260A220 230 240 0 1 0 210V0m0 0L210 200H190C-170 180 400-430 140-150C-120 130 100-110 0 0Z M10-20L-80 90Q130-180 50-70Q-30 40 10-20Z'
+      );
+    });
+
+    it('work with relative coordinates', function () {
+      assert.deepEqual(
+        svgpath('m10 -20 q-30 40 50 -70 t-80 90 z m 0 0 c 100 -110 -120 130 140 -150 s -170 180 190 200 h210z v210 a 220 230 240 0 0 -250 -260 l270 -280').reverse().toString(),
+        'M30-350l-270 280a220 230 240 0 1 250 260v-210m0 0l540 50h-210c-360-20 70-480-190-200c-260 280-40 40-140 150z m0 0l-30 20q160-200 80-90q-80 110-50 70Z'
+      );
+    });
+  });
+
 });
