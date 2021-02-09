@@ -3,6 +3,7 @@ declare module "svgpath" {
     (path: string): SvgPath;
     new (path: string): SvgPath;
     abs(): SvgPath;
+    rel(): SvgPath;
     scale(sx: number, sy?: number): SvgPath;
     translate(x: number, y?: number): SvgPath;
     rotate(angle: number, rx?: number, ry?: number): SvgPath;
