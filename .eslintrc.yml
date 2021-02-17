@@ -2,6 +2,10 @@ env:
   node: true
   es6:  false
 
+ignorePatterns:
+  - coverage/
+  - benchmark/implementations
+
 rules:
   accessor-pairs:         2
   array-bracket-spacing:  [ 2, "always", { "singleValue": true, "objectsInArrays": true, "arraysInArrays": true } ]
