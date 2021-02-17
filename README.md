@@ -1,7 +1,7 @@
 svgpath
 =======
 
-[![Build Status](https://img.shields.io/travis/fontello/svgpath/master.svg?style=flat)](https://travis-ci.org/fontello/svgpath)
+[![CI](https://github.com/fontello/svgpath/workflows/CI/badge.svg)](https://github.com/fontello/svgpath/actions)
 [![NPM version](https://img.shields.io/npm/v/svgpath.svg?style=flat)](https://www.npmjs.org/package/svgpath)
 [![Coverage Status](https://img.shields.io/coveralls/fontello/svgpath/master.svg?style=flat)](https://coveralls.io/r/fontello/svgpath?branch=master)
 

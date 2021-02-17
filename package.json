@@ -16,8 +16,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "npm run lint && nyc mocha",
-    "coverage": "npm run test && nyc report --reporter html",
-    "report-coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "covreport": "nyc report --reporter html && nyc report --reporter lcov"
   },
   "files": [
     "index.js",
@@ -27,7 +26,6 @@
   "devDependencies": {
     "ansi": "^0.3.1",
     "benchmark": "^2.1.1",
-    "coveralls": "^3.0.3",
     "eslint": "^7.1.0",
     "mocha": "^8.0.1",
     "nyc": "^15.0.1"
