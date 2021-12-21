@@ -38,6 +38,7 @@ describe('Path parse', function () {
     assert.strictEqual(svgpath('M 1e-2 0').toString(),   'M0.01 0');
     assert.strictEqual(svgpath('M 0.1e-2 0').toString(), 'M0.001 0');
     assert.strictEqual(svgpath('M .1e-2 0').toString(),  'M0.001 0');
+    assert.strictEqual(svgpath('M0.6.5').toString(),     'M0.6 0.5');
   });
 
   it('repeated', function () {
