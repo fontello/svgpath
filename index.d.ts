@@ -2,6 +2,7 @@ declare module "svgpath" {
   interface SvgPath {
     (path: string): SvgPath;
     new (path: string): SvgPath;
+    from(path: string | SvgPath): SvgPath;
     abs(): SvgPath;
     rel(): SvgPath;
     scale(sx: number, sy?: number): SvgPath;
