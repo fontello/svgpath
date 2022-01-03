@@ -40,7 +40,7 @@ declare module "svgpath" {
     unarc(): SvgPath;
     toString(): string;
     round(precision: number): SvgPath;
-    iterate(iterator: (segment: Segment[], index: number, x: number, y: number) => void, keepLazyStack?: boolean): SvgPath;
+    iterate(iterator: (segment: Segment, index: number, x: number, y: number) => void, keepLazyStack?: boolean): SvgPath;
   }
 
   const svgPath: SvgPath;
