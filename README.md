@@ -114,9 +114,12 @@ generic curves (`Q`/`q`/`C`/`c`).
 Replaces all arcs with bezier curves.
 
 
-### .toString() -> string
+### .toString(options) -> string
 
 Returns final path string.
+
+When optional options parameter `skipStringOptimizations` is set to true it will skip removing repeating commands names and whitespaces. This can be usefull to skip for large paths.
+Usage: `.toString({ skipStringOptimizations: true });`
 
 
 ### .round(precision) -> self
