@@ -20,12 +20,6 @@ fs.readdirSync(IMPLS_DIRECTORY).sort().forEach(name => {
   IMPLS.push({ name, code });
 });
 
-
-const SAMPLES = {
-  big: fs.readFileSync(path.join(__dirname, 'samples/big.txt'), 'utf8'),
-  one_path: fs.readFileSync(path.join(__dirname, 'samples/one_path.txt'), 'utf8')
-};
-
 let suite;
 
 function run(suite) {
@@ -35,6 +29,13 @@ function run(suite) {
     .on('complete', () => console.log(''))
     .run();
 }
+
+
+const SAMPLES = {
+  big: fs.readFileSync(path.join(__dirname, 'samples/big.txt'), 'utf8'),
+  one_path: fs.readFileSync(path.join(__dirname, 'samples/one_path.txt'), 'utf8')
+};
+
 
 suite = new Benchmark.Suite('.from("big.txt")');
 
@@ -52,6 +53,7 @@ IMPLS.forEach(impl => {
 });
 
 run(suite);
+
 
 const long = 'M 4.8173765432098765 -9.12666320366964 Z'.repeat(5000);
 
