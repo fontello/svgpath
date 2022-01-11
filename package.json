@@ -16,7 +16,9 @@
   "scripts": {
     "lint": "eslint .",
     "test": "npm run lint && nyc mocha",
-    "covreport": "nyc report --reporter html && nyc report --reporter lcov"
+    "covreport": "nyc report --reporter html && nyc report --reporter lcov",
+    "benchmark": "benchmark/benchmark.js",
+    "benchmark-prepare": "mkdir -p benchmark/implementations/2.4.1 && git checkout 2.4.1 && cp index.js benchmark/implementations/2.4.1 && cp -R --parents **/*.js benchmark/implementations/2.4.1 && git checkout master"
   },
   "files": [
     "index.js",
@@ -24,7 +26,6 @@
     "lib/"
   ],
   "devDependencies": {
-    "ansi": "^0.3.1",
     "benchmark": "^2.1.1",
     "eslint": "^8.5.0",
     "mocha": "^9.1.0",

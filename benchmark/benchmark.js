@@ -4,132 +4,61 @@
 
 /*eslint-disable no-console*/
 
-var path      = require('path');
-var fs        = require('fs');
-var util      = require('util');
-var Benchmark = require('benchmark');
-var ansi      = require('ansi');
-var cursor    = ansi(process.stdout);
+const path      = require('path');
+const fs        = require('fs');
+const Benchmark = require('benchmark');
 
 
-var IMPLS_DIRECTORY = path.join(__dirname, 'implementations');
-var IMPLS_PATHS = {};
-var IMPLS = [];
+const IMPLS_DIRECTORY = path.join(__dirname, 'implementations');
+const IMPLS = [];
 
 
-fs.readdirSync(IMPLS_DIRECTORY).sort().forEach(function (name) {
-  var file = path.join(IMPLS_DIRECTORY, name);
-  var code = require(file);
+fs.readdirSync(IMPLS_DIRECTORY).sort().forEach(name => {
+  const file = path.join(IMPLS_DIRECTORY, name);
+  const code = require(file);
 
-  IMPLS_PATHS[name] = file;
-  IMPLS.push({
-    name: name,
-    code: code
-  });
+  IMPLS.push({ name, code });
 });
 
 
-var SAMPLES_DIRECTORY = path.join(__dirname, 'samples');
-var SAMPLES = [];
+const SAMPLES = {
+  big: fs.readFileSync(path.join(__dirname, 'samples/big.txt'), 'utf8'),
+  one_path: fs.readFileSync(path.join(__dirname, 'samples/one_path.txt'), 'utf8')
+};
 
-fs.readdirSync(SAMPLES_DIRECTORY).sort().forEach(function (sample) {
-  var filepath = path.join(SAMPLES_DIRECTORY, sample),
-      extname  = path.extname(filepath),
-      basename = path.basename(filepath, extname),
-      content  = fs.readFileSync(filepath, 'utf8').split(/[\r\n]/),
-      title    = util.format('%s (%d bytes)', sample, content.length);
+let suite;
 
-  function onComplete() {
-    cursor.write('\n');
-  }
+function run(suite) {
+  suite
+    .on('start', () => console.log(`${suite.name}\n`))
+    .on('cycle', e => console.log(`  > ${e.target}`))
+    .on('complete', () => console.log(''))
+    .run();
+}
 
+suite = new Benchmark.Suite('.from("big.txt")');
 
-  var suite = new Benchmark.Suite(title, {
-
-    onStart: function onStart() {
-      console.log('\nSample: %s', sample);
-    },
-
-    onComplete: onComplete
-
-  });
-
-
-  IMPLS.forEach(function (impl) {
-    suite.add(impl.name, {
-
-      onCycle: function onCycle(event) {
-        cursor.horizontalAbsolute();
-        cursor.eraseLine();
-        cursor.write(' > ' + event.target);
-      },
-
-      onComplete: onComplete,
-
-      fn: function () {
-        impl.code.run(content);
-      }
-    });
-  });
-
-
-  SAMPLES.push({
-    name: basename,
-    title: title,
-    content: content,
-    suite: suite
-  });
+IMPLS.forEach(impl => {
+  suite.add(impl.name, () => impl.code.from(SAMPLES.big));
 });
 
-
-function select(patterns) {
-  var result = [];
-
-  if (!(patterns instanceof Array)) {
-    patterns = [ patterns ];
-  }
-
-  function checkName(name) {
-    return patterns.length === 0 || patterns.some(function (regexp) {
-      return regexp.test(name);
-    });
-  }
-
-  SAMPLES.forEach(function (sample) {
-    if (checkName(sample.name)) {
-      result.push(sample);
-    }
-  });
-
-  return result;
-}
+run(suite);
 
 
-function run(files) {
-  var selected = select(files);
+suite = new Benchmark.Suite('.from("one_path.txt")');
 
-  if (selected.length > 0) {
-    console.log('Selected samples: (%d of %d)', selected.length, SAMPLES.length);
-    selected.forEach(function (sample) {
-      console.log(' > %s', sample.name);
-    });
-  } else {
-    console.log('There isn\'t any sample matches any of these patterns: %s', util.inspect(files));
-  }
+IMPLS.forEach(impl => {
+  suite.add(impl.name, () => impl.code.from(SAMPLES.one_path));
+});
 
-  selected.forEach(function (sample) {
-    sample.suite.run();
-  });
-}
+run(suite);
 
-module.exports.IMPLS_DIRECTORY   = IMPLS_DIRECTORY;
-module.exports.IMPLS_PATHS       = IMPLS_PATHS;
-module.exports.IMPLS             = IMPLS;
-module.exports.SAMPLES_DIRECTORY = SAMPLES_DIRECTORY;
-module.exports.SAMPLES           = SAMPLES;
-module.exports.select            = select;
-module.exports.run               = run;
+const long = 'M 4.8173765432098765 -9.12666320366964 Z'.repeat(5000);
 
-run(process.argv.slice(2).map(function (source) {
-  return new RegExp(source, 'i');
-}));
+suite = new Benchmark.Suite('.from(long).toString()');
+
+IMPLS.forEach(impl => {
+  suite.add(impl.name, () => impl.code.from(long).toString());
+});
+
+run(suite);

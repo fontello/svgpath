@@ -1,4 +1,5 @@
 .nyc_output
 coverage
 node_modules
-*.log
+benchmark/implementations
+\!benchmark/implementations/current
