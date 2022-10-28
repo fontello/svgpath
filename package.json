@@ -12,6 +12,7 @@
     "matrix"
   ],
   "license": "MIT",
+  "funding": "https://github.com/fontello/svg2ttf?sponsor=1",
   "repository": "fontello/svgpath",
   "scripts": {
     "lint": "eslint .",
