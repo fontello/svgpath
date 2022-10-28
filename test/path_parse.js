@@ -68,4 +68,16 @@ describe('Path parse', function () {
     assert.strictEqual(svgpath('M0 .e3').err, 'SvgPath: invalid float exponent (at pos 4)');
     assert.strictEqual(svgpath('M0 0a2 2 2 2 2 2 2').err, 'SvgPath: arc flag can be 0 or 1 only (at pos 11)');
   });
+
+  it('keeps valid commands', function () {
+    assert.strictEqual(svgpath('M0 0G 1').toString(), 'M0 0');
+    assert.strictEqual(svgpath('z').toString(), '');
+    assert.strictEqual(svgpath('M0 0L+').toString(), 'M0 0');
+    assert.strictEqual(svgpath('M0 0L00').toString(), 'M0 0');
+    assert.strictEqual(svgpath('M0 0L0e').toString(), 'M0 0');
+    assert.strictEqual(svgpath('M0 0L0').toString(), 'M0 0');
+    assert.strictEqual(svgpath('M0,0,').toString(), 'M0 0');
+    assert.strictEqual(svgpath('M0 0L0 .e3').toString(), 'M0 0');
+    assert.strictEqual(svgpath('M0 0a2 2 2 2 2 2 2').toString(), 'M0 0');
+  });
 });
