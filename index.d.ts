@@ -41,6 +41,8 @@ declare module "svgpath" {
     toString(): string;
     round(precision: number): SvgPath;
     iterate(iterator: (segment: Segment, index: number, x: number, y: number) => void, keepLazyStack?: boolean): SvgPath;
+    segments: Segment[];
+    err: string;
   }
 
   const svgPath: SvgPath;
