@@ -554,6 +554,57 @@ describe('API', function () {
         'M100 100L110 110'
       );
     });
+
+    it('arc with huge radii (tiny sweep angle) becomes a line', function () {
+      // Real-world icon: chord ~303, radius ~5.7e17. Without the guard the
+      // end point was computed as (8192303520, -2439118528).
+      assert.strictEqual(
+        svgpath('M239.176 426.423a573626277316822300 573626277316822300 0 0 1 290.377143-86.454857z')
+          .unarc().toString(),
+        'M239.176 426.423l290.377143-86.454857z'
+      );
+
+      assert.strictEqual(
+        svgpath('M16.35 32.1A39212733800954650 39212733800954650 0 0 0 36.2 38.01').unarc().toString(),
+        'M16.35 32.1L36.2 38.01'
+      );
+    });
+
+    it('arcs with large radii stay within the chord bounding box', function () {
+      function bbox(path) {
+        var b = { minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity };
+
+        path.iterate(function (s) {
+          for (var i = 1; i < s.length; i += 2) {
+            b.minX = Math.min(b.minX, s[i]);
+            b.maxX = Math.max(b.maxX, s[i]);
+            b.minY = Math.min(b.minY, s[i + 1]);
+            b.maxY = Math.max(b.maxY, s[i + 1]);
+          }
+        });
+        return b;
+      }
+
+      for (var k = 6; k <= 20; k++) {
+        var r = Math.pow(10, k);
+        var b = bbox(svgpath('M239.176 426.423A' + r + ' ' + r + ' 0 0 1 529.553143 339.968143').unarc());
+
+        assert.ok(b.minX >= 239.176 - 1e-6 && b.maxX <= 529.553143 + 1e-6, 'x out of bounds for r=1e' + k);
+        assert.ok(b.minY >= 339.968143 - 1e-6 && b.maxY <= 426.423 + 1e-6, 'y out of bounds for r=1e' + k);
+      }
+    });
+
+    it('large arc flag with huge radii is not replaced by a line', function () {
+      assert.ok(/C/.test(svgpath('M0 0A1e12 1e12 0 1 1 10 0').unarc().toString()));
+    });
+
+    it('last curve ends exactly at the arc end point', function () {
+      var segments = svgpath('M100 100A30 50 37 1 1 110.3 110.7').unarc().segments;
+      var last = segments[segments.length - 1];
+
+      assert.strictEqual(last[5], 110.3);
+      assert.strictEqual(last[6], 110.7);
+    });
   });
 
 
