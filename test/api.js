@@ -477,6 +477,16 @@ describe('API', function () {
 
 
   describe('unarc', function () {
+    it('preserves smooth cubic control points after an expanded arc', function () {
+      [ 'M0 0A10 10 0 0 1 20 0S40 10 40 0S60 10 60 0',
+        'M5 3a10 10 0 0 1 20 0s20 10 20 0s20 10 20 0' ].forEach(function (d) {
+        assert.deepStrictEqual(
+          svgpath(d).unarc().unshort().segments,
+          svgpath(d).unshort().unarc().segments
+        );
+      });
+    });
+
     it('almost complete arc gets expanded to 4 curves', function () {
       assert.strictEqual(
         svgpath('M100 100 A30 50 0 1 1 110 110').unarc().round(0).toString(),
